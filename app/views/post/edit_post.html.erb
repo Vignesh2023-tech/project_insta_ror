@@ -1,0 +1,20 @@
+<form method="post" action="/update_post">
+
+    <%= token_tag%>
+
+    <h1> Edit post </h1>
+
+    <input type="hidden" name="id" value= "<%= @post.id %>">
+
+    <label for="caption"> Caption</label>
+    <input type="text" id="caption" name="caption" value="<%=@post.caption%>">
+
+    <label for="image"> Image </label>
+    <input type="url" id="image" name="image" value="<%= @post.image%>">
+
+    <label for="location"> Location </label>
+    <input type="text" id="location" name="location" value="<%= @post.location %>">
+
+    <button class="btn" type="submit"> Update Post </button>
+
+</form>

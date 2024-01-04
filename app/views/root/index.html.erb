@@ -1,0 +1,158 @@
+<style>
+  p {
+    margin-bottom: 0;
+  }
+
+  .post {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black;
+  }
+
+  .create_post {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .create_post div {
+  border: 1px solid black;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: .2rem .4rem;
+  }
+
+  .create_post a {
+  text-decoration: none;
+  color: black;
+  }
+
+  .bx-plus {
+  font-size: 1.2rem
+  }
+
+  .post_header,
+  .post-util {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2rem .3rem;
+  }
+
+  .post_profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  }
+
+  .post_profile span {
+  font-size: 3rem;
+  }
+
+  .post_profile div {
+  font-size: .8rem;
+  }
+
+  .edit {
+  display: flex;
+  flex-direction: column;
+  font-size: .8rem;
+  }
+
+  .bx {
+  font-size: 1.7rem;
+  }
+
+  .post-util>div:first-child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .5rem;
+  }
+
+  .post-util div i {
+  padding-right: .5rem;
+  }
+
+  .forward {
+  width: 1.3rem;
+  color: black;
+  }
+
+  .save span {
+  font-size: 1.7rem;
+  }
+
+  .image {
+  width: 100%;
+  height: auto;
+  }
+
+  .post_foot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .4rem;
+  padding: 0 0.3rem;
+  }
+
+  .post_foot p:first-child {
+  font-weight: bold
+  }
+
+  .post_foot p:last-child {
+  font-weight: 300;
+  font-family: cursive;
+  }
+</style>
+<div class="create_post">
+  <div>
+    <i class='bx bx-plus'></i>
+    <a href="new_post"> Create Post </a>
+  </div>
+</div>
+<% if current_user != nil%>
+  <% @posts.each { |post| %>
+  <div class="post">
+    <div class="post_header">
+      <div class="post_profile">
+        <% @user = User.find(post.user_id)%>
+        <span class="material-symbols-outlined">account_circle</span>
+        <div>
+          <p> Created By: <%= @user.name%> </p>
+          <p> Location: <%= post.location%> </p>
+        </div>
+      </div>
+      <div class="edit">
+        <a href="/edit_post/<%= post.id %>"> Edit </a>
+        <a href="/delete_post/<%= post.id %>"> Delete </a>
+      </div>
+    </div>
+    <div class="post-image">
+      <img class="image" src="<%= post.image%>">
+    </div>
+    <div class="post-util">
+      <div>
+        <i class='bx bx-heart'></i>
+        <i class='bx bx-message-rounded'></i>
+        <%= image_tag("send_2099085-removebg-preview.jpg", alt: "forward", class: "forward") %>
+      </div>
+      <div class="save">
+        <span class="material-symbols-outlined">bookmark</span>
+      </div>
+    </div>
+    <div class="post_foot">
+      <p> <%= @user.name%> </p>
+      <p> <%= post.caption%> </p>
+    </div>
+  </div>
+  <%}%>
+<% else %>
+  <p> Please login </p>
+<%end%>
