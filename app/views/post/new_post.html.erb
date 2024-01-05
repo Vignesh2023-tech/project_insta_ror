@@ -1,16 +1,18 @@
 <form method="post" action="/create_post">
-
-    <h1> New post </h1>
-
-    <label for="caption"> Caption</label>
-    <input type="text" id="caption" name="caption">
-
-    <label for="image"> Image </label>
-    <input type="url" id="image" name="image">
-
-    <label for="location"> Location </label>
-    <input type="text" id="location" name="location">
-
-    <button class="btn" type="submit"> Create Post </button>
-
+  <h1> New post </h1>
+  <label for="caption"> Caption</label>
+  <input type="text" id="caption" name="caption" required>
+  <label for="image"> Image </label>
+  <input type="url" id="image" name="image" pattern="https?://.+" title="It should be URL.eg:http, https" required>
+  <label for="location"> Location </label>
+  <input type="text" id="location" name="location" required>
+  <button class="btn btn-primary" type="submit"> Create Post </button>
 </form>
+<script>
+  const createPost = e => {
+
+    let caption =  document.getElementById("caption").value.trim();
+    let image = document.getElementById("image").value.trim();
+    let location = document.getElementById("location").value.trim();
+  }
+</script>

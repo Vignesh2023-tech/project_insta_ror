@@ -15,16 +15,15 @@ Rails.application.routes.draw do
   get "/signup", to: "user#signup"
   post "/signup", to: "user#create"
   get "/profile", to: "user#profile"
-  patch "/update", to: "user#update"
+  post "/update", to: "user#update"
   get "/password/reset", to: "user#password_reset_new"
   post "/password/reset", to: "user#password_reset_create"
   get "/password/reset/edit", to: "user#password_reset_edit"
-  patch "/password/reset/update", to: "user#password_reset_update"
+  post "/password/reset/update", to: "user#password_reset_update"
 
-  # Session
-  get "/login", to: "session#login"
-  post "/login_user", to: "session#login_user"
-  get "/logout", to: "session#logout"
+  get "/login", to: "user#login"
+  post "/login_user", to: "user#login_user"
+  get "/logout", to: "user#logout"
 
   # Post
   get "/new_post", to: "post#new_post"
